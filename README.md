@@ -4,6 +4,8 @@ A Python-first learning repo for becoming a production-minded AI engineer. It is
 
 The emphasis is harness engineering, context engineering, reliability, observability, retrieval, cost, safety, and inference tradeoffs rather than prompt tricks alone.
 
+Start with the [Learning Guide](LEARNING_GUIDE.md) if you want the fastest path through the material. It gives you a 7-day plan, a practice loop, and a mastery rubric for knowing when a concept has actually stuck.
+
 ## Web Learning Guide
 
 Browse the interactive learning webpage:
@@ -70,6 +72,8 @@ For each module:
 4. Run `pytest`.
 5. Explain the tradeoff in your own words.
 6. Add one new test case that would catch a realistic production failure.
+
+The quality bar is simple: for each topic, you should be able to explain it, implement it, break it, measure the failure, decide when it is the wrong tool, and recover safely.
 
 ## Capstone Target
 

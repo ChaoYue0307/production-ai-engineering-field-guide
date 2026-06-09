@@ -15,9 +15,11 @@
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top">AI Engineering Basics</a>
         <div class="nav-links">
+          <a href="#fast-track">Fast Track</a>
           <a href="#roadmap">Roadmap</a>
           <a href="#modules">Modules</a>
           <a href="#practice">Practice</a>
+          <a href="#self-check">Self-check</a>
           <a href="#capstone">Capstone</a>
         </div>
       </nav>
@@ -32,7 +34,7 @@
             safety, tenancy, and production failure handling through runnable labs.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#modules">Start learning</a>
+            <a class="button primary" href="#fast-track">Start the fast track</a>
             <a class="button secondary" href="#practice">Run the labs</a>
           </div>
         </div>
@@ -78,6 +80,68 @@ pytest'>Copy setup</button>
             <span class="pill">Production</span>
             <h3>Operate AI systems safely</h3>
             <p>Design fallback chains, evals, cost attribution, prompt-injection checks, and multi-tenant isolation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="fast-track">
+        <div class="section-heading">
+          <p class="eyebrow">Fastest useful path</p>
+          <h2>Learn by shipping small production behaviors</h2>
+          <p>
+            Do not try to memorize every term first. Follow this sequence: read the concept,
+            run the lab, break one assumption, add one check, and explain the tradeoff.
+          </p>
+        </div>
+
+        <div class="sprint-grid">
+          <article>
+            <span class="day">Day 1</span>
+            <h3>Harness and context</h3>
+            <p>Learn how requests, responses, traces, fake clients, and context packing make model calls testable.</p>
+            <code>python labs/01_harness_engineering/run.py<br />python labs/02_context_engineering/run.py</code>
+            <strong>Ship:</strong>
+            <p>A testable LLM call with trace metadata and priority-based context packing.</p>
+          </article>
+          <article>
+            <span class="day">Day 2</span>
+            <h3>Caching and structured output</h3>
+            <p>Compare exact and semantic caching, then validate JSON before trusting it.</p>
+            <code>python labs/03_caching/run.py<br />python labs/04_structured_outputs/run.py</code>
+            <strong>Ship:</strong>
+            <p>A tenant-safe cache key and a schema validation failure you can explain.</p>
+          </article>
+          <article>
+            <span class="day">Day 3</span>
+            <h3>Tools and agents</h3>
+            <p>Practice tool contracts, argument validation, idempotency, loop budgets, and termination rules.</p>
+            <code>python labs/05_tool_calling/run.py<br />python labs/08_agent_budgets/run.py</code>
+            <strong>Ship:</strong>
+            <p>A safe retry path and an agent that stops for the right reason.</p>
+          </article>
+          <article>
+            <span class="day">Day 4</span>
+            <h3>RAG and evals</h3>
+            <p>Build retrieval intuition, measure citation coverage, and catch regressions with golden cases.</p>
+            <code>python labs/06_rag/run.py<br />python labs/07_evals_observability/run.py</code>
+            <strong>Ship:</strong>
+            <p>A new adversarial eval for stale retrieval, malformed JSON, or prompt injection.</p>
+          </article>
+          <article>
+            <span class="day">Day 5</span>
+            <h3>Inference and safety</h3>
+            <p>Separate prefill from decode, estimate KV cache pressure, and enforce tenant boundaries.</p>
+            <code>python labs/09_inference_stack/run.py<br />python labs/10_safety_tenancy/run.py</code>
+            <strong>Ship:</strong>
+            <p>A latency/memory explanation plus a blocked cross-tenant access case.</p>
+          </article>
+          <article>
+            <span class="day">Day 6-7</span>
+            <h3>Capstone and review</h3>
+            <p>Connect routing, safety, retrieval, context, caching, validation, traces, cost, and evals.</p>
+            <code>python examples/capstone_assistant.py<br />pytest</code>
+            <strong>Ship:</strong>
+            <p>One improvement to the capstone and one regression test proving it works.</p>
           </article>
         </div>
       </section>
@@ -326,6 +390,44 @@ python labs/10_safety_tenancy/run.py</code></pre>
             <button class="copy-button" data-copy="python labs/09_inference_stack/run.py
 python labs/10_safety_tenancy/run.py">Copy commands</button>
             <p>Estimate the latency and memory impact of longer context, then test tenant isolation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="self-check">
+        <div class="section-heading">
+          <p class="eyebrow">Quality bar</p>
+          <h2>Know when you actually learned it</h2>
+          <p>
+            A topic is not mastered when the page feels familiar. It is mastered when you can
+            implement, break, measure, and explain the behavior under production constraints.
+          </p>
+        </div>
+
+        <div class="rubric-grid">
+          <article>
+            <h3>Explain</h3>
+            <p>Give a two-minute explanation of the concept, the failure mode it prevents, and the tradeoff it introduces.</p>
+          </article>
+          <article>
+            <h3>Implement</h3>
+            <p>Point to the file or function in `src/ai_engineering_basics/` that implements the pattern.</p>
+          </article>
+          <article>
+            <h3>Break</h3>
+            <p>Change a budget, schema, cache key, chunk size, route rule, or safety policy so the system fails visibly.</p>
+          </article>
+          <article>
+            <h3>Measure</h3>
+            <p>Add a trace, eval case, cost event, or pytest assertion that catches the failure before users do.</p>
+          </article>
+          <article>
+            <h3>Decide</h3>
+            <p>Say when the technique is the wrong tool, such as fine-tuning for fresh facts or semantic caching for private data.</p>
+          </article>
+          <article>
+            <h3>Recover</h3>
+            <p>Design the fallback: retry, repair, route down, ask for clarification, degrade gracefully, or stop safely.</p>
           </article>
         </div>
       </section>
