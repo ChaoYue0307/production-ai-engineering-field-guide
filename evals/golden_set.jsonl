@@ -1,0 +1,3 @@
+{"case_id":"cache-compare","input":"Compare prompt caching and semantic caching.","expected_terms":["prompt caching","semantic caching"],"forbidden_terms":["always safe"]}
+{"case_id":"rag-eval","input":"What should retrieval evals measure?","expected_terms":["recall","precision","grounding","citation"],"forbidden_terms":["only latency"]}
+{"case_id":"agent-budget","input":"Why do agents need budgets?","expected_terms":["steps","tools","termination"],"forbidden_terms":["infinite loop is fine"]}

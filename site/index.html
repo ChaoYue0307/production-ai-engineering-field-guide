@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Engineering Basics</title>
+    <meta
+      name="description"
+      content="A practical AI engineering learning map covering harnesses, context, caching, inference, RAG, evals, observability, safety, agents, and production tradeoffs."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="top">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top">AI Engineering Basics</a>
+        <div class="nav-links">
+          <a href="#roadmap">Roadmap</a>
+          <a href="#modules">Modules</a>
+          <a href="#practice">Practice</a>
+          <a href="#capstone">Capstone</a>
+        </div>
+      </nav>
+
+      <section class="hero-grid">
+        <div>
+          <p class="eyebrow">Python-first production AI engineering curriculum</p>
+          <h1>Master the engineering systems behind reliable AI products.</h1>
+          <p class="hero-copy">
+            Learn harness engineering, context engineering, caching, inference tradeoffs,
+            structured outputs, tool reliability, agents, RAG, evals, observability, cost,
+            safety, tenancy, and production failure handling through runnable labs.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#modules">Start learning</a>
+            <a class="button secondary" href="#practice">Run the labs</a>
+          </div>
+        </div>
+
+        <aside class="setup-card" aria-label="Quick setup commands">
+          <h2>Quick Start</h2>
+          <p>Run the repo locally. The default labs use deterministic fake model clients.</p>
+          <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+pytest</code></pre>
+          <button class="copy-button" data-copy='python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+pytest'>Copy setup</button>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="section" id="outcomes">
+        <div class="section-heading">
+          <p class="eyebrow">What you will be able to do</p>
+          <h2>Skills readers can practice immediately</h2>
+        </div>
+        <div class="outcome-grid">
+          <article>
+            <span class="pill">Reliability</span>
+            <h3>Build model harnesses</h3>
+            <p>Use typed requests, fake clients, traces, validation, and regression tests before changing prompts or models.</p>
+          </article>
+          <article>
+            <span class="pill">Context</span>
+            <h3>Engineer context, not long prompts</h3>
+            <p>Pack policy, memory, retrieval, and tool state with priorities, source labels, and token budgets.</p>
+          </article>
+          <article>
+            <span class="pill">Serving</span>
+            <h3>Reason about inference tradeoffs</h3>
+            <p>Separate prefill from decode, estimate KV memory pressure, and compare batching, quantization, and distillation.</p>
+          </article>
+          <article>
+            <span class="pill">Production</span>
+            <h3>Operate AI systems safely</h3>
+            <p>Design fallback chains, evals, cost attribution, prompt-injection checks, and multi-tenant isolation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="roadmap">
+        <div>
+          <p class="eyebrow">Learning sequence</p>
+          <h2>From one model call to a production AI system</h2>
+          <p>
+            The curriculum is ordered so each module adds one production capability. Start with a
+            deterministic model harness, then add context, caches, tools, retrieval, evals,
+            observability, safety, and finally cross-stack tradeoff decisions.
+          </p>
+        </div>
+        <ol class="timeline">
+          <li><strong>Foundation:</strong> harnesses, typed requests, traces, and tests.</li>
+          <li><strong>Input control:</strong> context packing, caching, structured outputs, and tools.</li>
+          <li><strong>System behavior:</strong> agents, RAG, evals, observability, and cost.</li>
+          <li><strong>Scale and safety:</strong> inference, tenancy, routing, fallback, and degraded UX.</li>
+        </ol>
+      </section>
+
+      <section class="section" id="modules">
+        <div class="section-heading">
+          <p class="eyebrow">Module browser</p>
+          <h2>Choose a topic and practice the skill</h2>
+          <p>
+            Use the filters to focus on fundamentals, reliability, serving, retrieval, or safety.
+            Check off module tasks as you complete them; progress is saved in this browser.
+          </p>
+        </div>
+
+        <div class="toolbar" role="toolbar" aria-label="Module filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="foundation">Foundation</button>
+          <button class="filter" data-filter="reliability">Reliability</button>
+          <button class="filter" data-filter="serving">Serving</button>
+          <button class="filter" data-filter="rag">RAG</button>
+          <button class="filter" data-filter="safety">Safety</button>
+        </div>
+
+        <div class="progress-panel" aria-live="polite">
+          <div>
+            <strong id="progress-label">0% complete</strong>
+            <span id="progress-detail">No mastery tasks checked yet.</span>
+          </div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+        </div>
+
+        <div class="module-grid">
+          <article class="module-card" data-category="foundation reliability">
+            <div class="module-topline"><span>01</span><span>Foundation</span></div>
+            <h3>Harness Engineering</h3>
+            <p>Make model behavior reproducible, observable, testable, and safe to change.</p>
+            <ul>
+              <li>Typed request and response interfaces.</li>
+              <li>Deterministic fake clients for tests.</li>
+              <li>Trace tokens, latency, model version, and errors.</li>
+            </ul>
+            <code>python labs/01_harness_engineering/run.py</code>
+            <label><input type="checkbox" data-progress="harness" /> I can trace and test one LLM call.</label>
+          </article>
+
+          <article class="module-card" data-category="foundation reliability">
+            <div class="module-topline"><span>02</span><span>Context</span></div>
+            <h3>Context Engineering</h3>
+            <p>Choose, order, compress, label, and budget the information the model sees.</p>
+            <ul>
+              <li>Separate policy, user request, retrieved facts, memory, and tool state.</li>
+              <li>Preserve high-priority evidence under token pressure.</li>
+              <li>Label sources for attribution and citations.</li>
+            </ul>
+            <code>python labs/02_context_engineering/run.py</code>
+            <label><input type="checkbox" data-progress="context" /> I can design a context packing policy.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability safety">
+            <div class="module-topline"><span>03</span><span>Caching</span></div>
+            <h3>Prompt vs. Semantic Caching</h3>
+            <p>Lower latency and cost without returning stale or cross-tenant data.</p>
+            <ul>
+              <li>Prompt caching is exact and safer for stable prefixes.</li>
+              <li>Semantic caching catches paraphrases but carries correctness risk.</li>
+              <li>Safe keys include tenant, model, policy, and freshness dimensions.</li>
+            </ul>
+            <code>python labs/03_caching/run.py</code>
+            <label><input type="checkbox" data-progress="caching" /> I can decide when caching should be disabled.</label>
+          </article>
+
+          <article class="module-card" data-category="serving">
+            <div class="module-topline"><span>04</span><span>Serving</span></div>
+            <h3>Inference Stack</h3>
+            <p>Optimize prefill, decode, KV cache memory, throughput, and model compression differently.</p>
+            <ul>
+              <li>Prefill scales with prompt length; decode is sequential.</li>
+              <li>KV cache pressure grows with layers, hidden size, context, and batch.</li>
+              <li>Compare batching, paged attention, speculative decoding, quantization, and distillation.</li>
+            </ul>
+            <code>python labs/09_inference_stack/run.py</code>
+            <label><input type="checkbox" data-progress="inference" /> I can explain prefill vs. decode latency.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability">
+            <div class="module-topline"><span>05</span><span>Contracts</span></div>
+            <h3>Structured Outputs</h3>
+            <p>Treat JSON output as a contract with validation, repair loops, fallback, and explicit failure states.</p>
+            <ul>
+              <li>Catch prose-wrapped JSON, missing fields, wrong types, and invalid enums.</li>
+              <li>Validate outside the model before using data.</li>
+              <li>Return safe failure states when repair does not work.</li>
+            </ul>
+            <code>python labs/04_structured_outputs/run.py</code>
+            <label><input type="checkbox" data-progress="structured" /> I can build a validation and repair loop.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability safety">
+            <div class="module-topline"><span>06</span><span>Tools</span></div>
+            <h3>Function Calling Reliability</h3>
+            <p>Make tool use reliable with narrow contracts, runtime argument validation, and idempotency.</p>
+            <ul>
+              <li>Reject hallucinated tools and malformed arguments.</li>
+              <li>Authorize outside the model.</li>
+              <li>Use idempotency keys for safe retries.</li>
+            </ul>
+            <code>python labs/05_tool_calling/run.py</code>
+            <label><input type="checkbox" data-progress="tools" /> I can make a tool safe to retry.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability safety">
+            <div class="module-topline"><span>07</span><span>Agents</span></div>
+            <h3>Agent Guardrails And Budgets</h3>
+            <p>Bound agent loops with step budgets, tool budgets, token budgets, and termination conditions.</p>
+            <ul>
+              <li>Stop runaway agents before they spend or act indefinitely.</li>
+              <li>Prevent repeated failed tool calls.</li>
+              <li>Provide degraded-mode UX when capabilities are unavailable.</li>
+            </ul>
+            <code>python labs/08_agent_budgets/run.py</code>
+            <label><input type="checkbox" data-progress="agents" /> I can test loop termination.</label>
+          </article>
+
+          <article class="module-card" data-category="rag reliability">
+            <div class="module-topline"><span>08</span><span>RAG</span></div>
+            <h3>Retrieval-Augmented Generation</h3>
+            <p>Engineer retrieval, ranking, freshness, grounding, and attribution deliberately.</p>
+            <ul>
+              <li>Chunk documents into useful evidence units.</li>
+              <li>Use vector, keyword, or hybrid search with reranking.</li>
+              <li>Evaluate recall, precision, grounding, freshness, and citation quality.</li>
+            </ul>
+            <code>python labs/06_rag/run.py</code>
+            <label><input type="checkbox" data-progress="rag" /> I can distinguish retrieval failure from generation failure.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability rag">
+            <div class="module-topline"><span>09</span><span>Evals</span></div>
+            <h3>Golden Sets And Regression Evals</h3>
+            <p>Treat evals as production infrastructure that catches silent regressions.</p>
+            <ul>
+              <li>Use golden, regression, adversarial, judge, and human evals.</li>
+              <li>Track task success, groundedness, JSON validity, tool accuracy, safety, cost, and latency.</li>
+              <li>Calibrate LLM-as-judge before trusting it.</li>
+            </ul>
+            <code>python labs/07_evals_observability/run.py</code>
+            <label><input type="checkbox" data-progress="evals" /> I can add an eval for a production failure.</label>
+          </article>
+
+          <article class="module-card" data-category="reliability serving">
+            <div class="module-topline"><span>10</span><span>Ops</span></div>
+            <h3>Observability And Cost</h3>
+            <p>Record traces, spans, tokens, latency, errors, drift signals, and cost attribution.</p>
+            <ul>
+              <li>Attribute cost by feature, workflow, tenant, and user journey.</li>
+              <li>Monitor validation failures, output length, fallback rate, and eval scores.</li>
+              <li>Debug failures with trace spans instead of guesses.</li>
+            </ul>
+            <code>python labs/07_evals_observability/run.py</code>
+            <label><input type="checkbox" data-progress="observability" /> I can identify an expensive or failing span.</label>
+          </article>
+
+          <article class="module-card" data-category="safety reliability">
+            <div class="module-topline"><span>11</span><span>Safety</span></div>
+            <h3>Safety And Tenancy</h3>
+            <p>Preserve permission boundaries when the model is persuasive, confused, or attacked.</p>
+            <ul>
+              <li>Treat retrieved documents as data, not instructions.</li>
+              <li>Enforce authorization outside the model.</li>
+              <li>Protect retrieval, caches, traces, tools, and generated context from cross-tenant leakage.</li>
+            </ul>
+            <code>python labs/10_safety_tenancy/run.py</code>
+            <label><input type="checkbox" data-progress="safety" /> I can prevent cross-user context contamination.</label>
+          </article>
+
+          <article class="module-card" data-category="foundation serving safety">
+            <div class="module-topline"><span>12</span><span>Tradeoffs</span></div>
+            <h3>Production Tradeoffs</h3>
+            <p>Choose between fine-tuning, in-context learning, RAG, distillation, quantization, routing, and fallback.</p>
+            <ul>
+              <li>Fine-tuning is wrong for frequently changing facts and permissions.</li>
+              <li>RAG is wrong when retrieval quality is poor or behavior must be learned.</li>
+              <li>Fallback models must preserve required capabilities.</li>
+            </ul>
+            <code>python examples/capstone_assistant.py</code>
+            <label><input type="checkbox" data-progress="tradeoffs" /> I can justify a latency, quality, cost, and reliability tradeoff.</label>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="practice">
+        <div class="section-heading">
+          <p class="eyebrow">Practice workspace</p>
+          <h2>Run, modify, test, explain</h2>
+          <p>Each practice card has a command and a deliberate modification to make the skill stick.</p>
+        </div>
+        <div class="practice-grid">
+          <article>
+            <h3>Daily warm-up</h3>
+            <pre><code>pytest
+python labs/01_harness_engineering/run.py</code></pre>
+            <button class="copy-button" data-copy="pytest
+python labs/01_harness_engineering/run.py">Copy commands</button>
+            <p>Explain what was traced and what the fake model made testable.</p>
+          </article>
+          <article>
+            <h3>Reliability drill</h3>
+            <pre><code>python labs/04_structured_outputs/run.py
+python labs/05_tool_calling/run.py
+python labs/08_agent_budgets/run.py</code></pre>
+            <button class="copy-button" data-copy="python labs/04_structured_outputs/run.py
+python labs/05_tool_calling/run.py
+python labs/08_agent_budgets/run.py">Copy commands</button>
+            <p>Break a schema, tool argument, or budget and add a regression test.</p>
+          </article>
+          <article>
+            <h3>RAG and eval drill</h3>
+            <pre><code>python labs/06_rag/run.py
+python labs/07_evals_observability/run.py</code></pre>
+            <button class="copy-button" data-copy="python labs/06_rag/run.py
+python labs/07_evals_observability/run.py">Copy commands</button>
+            <p>Change chunk size, add a stale document, and decide which metric should catch the issue.</p>
+          </article>
+          <article>
+            <h3>Serving and safety drill</h3>
+            <pre><code>python labs/09_inference_stack/run.py
+python labs/10_safety_tenancy/run.py</code></pre>
+            <button class="copy-button" data-copy="python labs/09_inference_stack/run.py
+python labs/10_safety_tenancy/run.py">Copy commands</button>
+            <p>Estimate the latency and memory impact of longer context, then test tenant isolation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="capstone">
+        <div>
+          <p class="eyebrow">Capstone system</p>
+          <h2>Production-style assistant flow</h2>
+          <p>
+            The capstone combines model routing, prompt-injection checks, retrieval, context packing,
+            prompt caching, JSON validation, traces, cost attribution, and agent budget tracking.
+          </p>
+          <pre><code>python examples/capstone_assistant.py</code></pre>
+          <button class="copy-button" data-copy="python examples/capstone_assistant.py">Copy capstone command</button>
+        </div>
+        <div class="flow" aria-label="Capstone architecture flow">
+          <div>Question</div>
+          <span>Safety check</span>
+          <div>Model route</div>
+          <span>Retrieve evidence</span>
+          <div>Pack context</div>
+          <span>Cache or call model</span>
+          <div>Validate JSON</div>
+          <span>Trace and attribute cost</span>
+          <div>Answer with citations</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Study loop: read a module, run the lab, change one assumption, run tests, explain the
+        tradeoff, and add one regression case.
+      </p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
