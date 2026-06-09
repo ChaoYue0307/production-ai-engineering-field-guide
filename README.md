@@ -4,6 +4,14 @@ A Python-first learning repo for becoming a production-minded AI engineer. It is
 
 The emphasis is harness engineering, context engineering, reliability, observability, retrieval, cost, safety, and inference tradeoffs rather than prompt tricks alone.
 
+## Web Learning Guide
+
+Browse the interactive learning webpage:
+
+[Production AI Engineering Field Guide](https://chaoyue0307.github.io/production-ai-engineering-field-guide/)
+
+The webpage includes the roadmap, filterable module cards, copyable practice commands, progress checkboxes, and the capstone assistant flow.
+
 ## Quick Start
 
 ```bash
@@ -22,7 +30,7 @@ python labs/06_rag/run.py
 
 The default code uses deterministic fake model clients, so you can learn without paid APIs. Copy `.env.example` to `.env` later if you want to adapt the interfaces to real providers.
 
-Open the learning webpage:
+Open the webpage locally:
 
 ```bash
 open site/index.html
